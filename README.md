@@ -1,7 +1,7 @@
 # PHYS449 Machine Learning in Physics
 
-- name: *your name*
-- student ID: *your student ID*
+- name: Uzair Lakhani
+- student ID: 20692945
 
 ## Instructions
 
