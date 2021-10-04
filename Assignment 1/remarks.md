@@ -5,7 +5,6 @@
 - Please include comments for your code (-1)
 - Bad accuracy for gradient descent on 1.in (-1)
 -- Please change the params such that it performs well
-- Implemented batch gradient descent instead of gradient descent (-1)
 
 ## Other Remarks
 - Use np.loadtxt
