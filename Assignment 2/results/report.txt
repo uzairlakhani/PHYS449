@@ -1,0 +1,4 @@
+The model is trainied on Convolutional Neural Network using Pytorch.
+    
+Final Loss on testing data is 0.1663
+Final Accuracy on testing data is 0.1663%
