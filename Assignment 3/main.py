@@ -12,18 +12,21 @@ import numpy as np
 sys.path.append('src')
 sns.set_theme()
 
-
+##function to generate data for initial x, y values
 def x_y_data(ub, lb):
     mid_val = (ub + lb)/2
     x, y = np.meshgrid(np.linspace(-1,1,10),np.linspace(-1,1,10))
     return mid_val, x,y
 
+## function to scale the data between 0 and 1
 def minmax_scale(scale, max_value, min_value):
     return((scale-min_value)/(max_value-min_value))
 
+## function to reverse the scaled data back to original value
 def reverse_scale(scale, max_value, min_value):
     return (scale * (max_value - min_value)) + min_value
 
+## function to generate data for Machine Learning model
 def generate_data(ub, lb):
     x_2 = []
     y_2 = []
@@ -112,6 +115,8 @@ def generate_data(ub, lb):
             init_y = (v(init_x, init_y)*0.01)+init_y
     return x_2, y_2
 
+## function to seperate data into features and labels. This function creates features having
+## x, y values and labels having next x and next y values, keeping data in sequence
 def create_dataset(x,y):
     x_2_label = []
     y_2_label = []
@@ -140,6 +145,7 @@ def create_dataset(x,y):
     labels = labels.reshape(features.shape[0],1,2)
     return features, labels, max_x_label, max_y_label, min_x_label, min_y_label
 
+## This function predicts and plots the data
 def predict(n_tests):
     rand_x = random.sample(np.arange(lb, ub, 0.1).tolist(), n_tests)
     rand_y = random.sample(np.arange(lb, ub, 0.1).tolist(), n_tests)
@@ -213,6 +219,7 @@ if __name__ == '__main__':
     ub = float(args.ub)
     ntests = int(args.n_tests)
 
+## function for vector field
     def u(x, y):
         u = eval(x_field)
         return u
@@ -225,12 +232,15 @@ if __name__ == '__main__':
     x_2, y_2 = generate_data(ub, lb)
     features, labels, max_x_label, max_y_label, min_x_label, min_y_label = create_dataset(x_2,y_2)
 
+## Deep learning model
     model = Sequential()
     model.add(LSTM(50, activation='relu', input_shape=(1, 2), return_sequences=True))
     model.add(LSTM(50, activation='relu', return_sequences=True))
     model.add(Dense(2))
     model.compile(optimizer=Adam(learning_rate=learning_rate), loss='mse')
     history = model.fit(features, labels, validation_split=0.2, epochs=epochs, batch_size=BatchSize, verbose=verbosity)
+
+## Predition and plotting done here
     predict(ntests)
 
 
