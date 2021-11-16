@@ -1,0 +1,5 @@
+{
+    "learning rate": 0.05,
+    "num epochs": 800,
+    "display epochs": 10
+}
