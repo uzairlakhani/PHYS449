@@ -1,0 +1,6 @@
+{
+    "learning rate": 1e-4,
+    "num epochs": 100,
+    "display epochs": 1,
+    "Batch Size": 300
+}
